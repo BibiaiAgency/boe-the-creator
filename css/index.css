@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+@keyframes appear {
+    0% {opacity: 0; transform: translateY(1em);}
+    100% {opacity: 1; transform: translateY(0em);}
+}
+
+* { 
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Rubik", sans-serif;
+}
+
+body {
+    background-color: #F3F2EE;
+}
+
+h1 {
+    font-weight: 400;
+    font-size: 20px;
+
+}
+
+.wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 5em 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-container { /* Form wrap */
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+#file-name {
+    background-color: transparent;
+    border: none;
+    font-size: 50px;
+    font-weight: 200;
+    transition: .1s;
+    border-bottom: 3px solid transparent;
+}
+
+#file-name:focus {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid black;
+}
+
+#file-name::placeholder {
+    transition: .2s;
+    opacity: 1;
+    color: black;
+}
+
+#file-name:hover::placeholder {
+    opacity: .6;
+}
+
+#file-name:focus::placeholder {
+    opacity: 0;
+}
+
+#form-rows{
+    display: grid;
+    gap: 4px;
+}
+
+#form-rows div{
+    display: flex;
+    flex: column;
+    gap: 4px;
+
+    animation: appear .3s ease-in-out;
+}
+
+#form-rows select, #form-rows input, textarea {
+    border: none;
+    padding: .7em;
+    font-size: 16px;
+}
+
+#form-rows select:focus, #form-rows input:focus {
+    outline: none;
+}
+
+#form-rows select.type-select {
+    background-color: black;
+    color: white;
+    border-right: 5px solid black;
+}
+
+.index-input {
+    max-width: 50px;
+}
+
+.key-output {
+    background-color: transparent;
+    font-weight: 500;
+
+    max-width: 60px;
+    text-align: center;
+}
+
+#form-rows .div-text-content {
+    width: 100%;
+}
+
+#form-rows .div-text-content .text-input{
+    width: 100%;
+}
+
+.delete-row {
+    border: none;
+    background-color: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.delete-row svg{
+    stroke: #CB6060;
+    stroke-width: 3px;
+    width: 16px;
+}
+
+#add-row {
+    border: none;
+    background-color: rgba(255, 255, 255, .4);
+    padding: .7em;
+
+    transition: .2s;
+}
+
+#add-row:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#add-row svg{
+    stroke-width: 2;
+    width: 16px;
+}
+
+#generate-json {
+    border: none;
+    background-color: black;
+    padding: 3em;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transition: .2s;
+}
+
+#generate-json:hover {
+    opacity: .8;
+}
+
+#generate-json svg{
+    stroke-width: 2;
+    width: 30px;
+    stroke: white;
+}
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    position: relative;
+    animation: appear .3s ease-in-out;
+    max-width: 500px;
+    width: 100%;
+    padding: 0 1em;
+}
+.modal-content textarea {
+    width: 100%;
+    height: 300px;
+    border-radius: 3px;
+    padding: 50px;
+}
+
+.modal-content textarea:focus {
+    outline: none;
+}
+
+.modal-content .buttons {
+    position: absolute;
+    top: -2em;
+    right: 1em;
+}
+
+.modal-content .buttons button {
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    border-radius: 3px;
+
+    transition: .2s;
+}
+
+.modal-content .buttons button:hover {
+    opacity: .7;
+}
+
+.modal-content .buttons button svg {
+    width: 20px;
+    stroke: white;
+}
+
+.modal-content #save-text {
+    position: absolute;
+    bottom: 5px;
+    right: 1em;
+    border:none;
+    background-color: rgba(0, 0, 0, .05);
+    width: 50px;
+    height: 50px;
+    border-radius: 100% 0 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-left: .7em;
+    padding-top: .7em;
+
+    transition: .2s;
+}
+
+.modal-content #save-text:hover {
+    background-color: rgba(0, 0, 0, .1);
+    width: 100px;
+    height: 100px;
+
+    padding-left: 2em;
+    padding-top: 2em;
+}
+
+.modal-content #save-text svg{
+    stroke-width: 1.3;
+}
+
+/* Agregar este estilo a tu archivo CSS */
+
+.session-menu {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #FFF;
+    overflow-y: auto;
+    transition: left 0.3s;
+    z-index: 1000;
+
+    padding: 4em 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    overflow: hidden;
+}
+
+#sessions-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-menu.open {
+    left: 0;
+}
+
+.session-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#sessions-container div {
+    display: flex;
+}
+
+#clear-sessions {
+    display: flex;
+    align-items: center;
+    gap:1em;
+    color:black;
+    border-radius: 3px;
+    opacity: .5;
+
+    transition: .2s;
+
+    position: absolute;
+    bottom: 1em;
+    z-index: 100000;
+}
+
+#clear-sessions:hover {
+    opacity: 1;
+}
+
+#new-session {
+    display: flex;
+    align-items: center;
+    gap:1em;
+    background-color: black;
+    color:white;
+    border-radius: 3px;
+
+    transition: .2s;
+}
+
+#new-session:hover {
+    opacity: .8;
+}
+
+.session-saved {
+    border-radius: 3px 20px 20px 3px;
+    transition: .2s;
+
+    display: flex;
+    align-items: center;
+}
+
+.session-saved:hover {
+    background-color: #F3F2EE;
+}
+
+.session-saved button:first-child{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    margin: 2px 0px;
+    width: 100%;
+
+    height: 2.7em;
+}
+
+.session-saved button:first-child span{
+    text-wrap:nowrap;
+    text-overflow:ellipsis;
+}
+
+.session-saved button:last-child{
+    color:red;
+    width: 2.3em;
+    height: 2em;
+    border-radius: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    margin-right: .5em;
+    transition: .2s;
+}
+
+.session-saved:hover button:last-child{
+    background-color:red;
+}
+
+.session-saved button:last-child:hover {
+    opacity: .7;
+}
+
+.session-saved button:last-child svg{
+    transition: .2s;
+}
+
+.session-saved:hover button:last-child svg{
+    stroke: white; 
+}
+
+#open-menu {
+    position: fixed;
+    top:1em;
+    left: 1em;
+    z-index: 10000;
+
+    background-color: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    transition: .2s;
+}
+
+#open-menu.opened {
+
+}
+
+#open-menu:hover  {
+    opacity: .7;
+}
+
+#open-menu.opened:hover svg {
+
+}
